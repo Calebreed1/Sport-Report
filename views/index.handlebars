@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="jumbotron heading">
+        <div class="row">
+            <img class="logo" src="img/sports-report-2.jpg" width="750" height="280">
+            <h2>The ultimate website for all your up to date sports action and news!</h2>
+            <a href="/" class="btn btn-primary home">Home</a>
+            <a href="/saved" class="btn btn-success saved">Saved Articles</a>
+            <a href="/scrape" class="btn btn-danger scrape">Scrape New Articles</a>
+        </div>
+    </div>
+    <div class="jumbotron body">
+        <ul>
+            {{#each articles}}
+                <li class="border">
+                    <img class="photo" src="{{img}}">
+        	        <a href="{{link}}" target="_blank">{{title}}</a>
+                    <div>
+                        {{#if saved}}
+                            <div>Notes:
+                                <ul>
+                                    {{#each note}}
+                                        <li>{{this.title}} - {{this.body}}</li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                            <button type="button" class="btn btn-primary comment" data-id="{{_id}}">Note</button>
+                            <button type="button" class="btn btn-danger delete" data-id="{{_id}}">Delete Article</button>
+                        {{else}}
+                            <button type="button" class="btn btn-primary save" data-id="{{_id}}">Save Article</button>
+                        {{/if}}
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+
+<div id= "commentModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <h4>Subject:</h4>
+                <input id="title" name="title">
+                <h4>comment:</h4>
+                <textarea id="body" name="body"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="submit" class="btn btn-primary">Submit Comment</button>
+            </div>
+        </div>
+    </div>
+</div>

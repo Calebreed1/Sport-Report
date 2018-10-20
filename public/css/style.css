@@ -1,0 +1,41 @@
+body {
+    text-align: center
+}
+h1 {
+    font-size: 15px;
+}
+ul {
+    list-style-type: none;
+}
+
+.logo {
+    float: left;
+}
+
+.heading {
+    background-color: #06455B;
+    color: white;
+}
+
+.body {
+    background-color: black;
+    color: white;
+}
+
+.body a {
+    text-decoration: none;
+    all: unset;
+    font-size: 15px;
+}
+
+.body a:hover {
+    cursor: pointer;
+}
+
+.border {
+    border-top: 1px white solid;
+}
+
+.photo {
+    padding: 10px;
+}
