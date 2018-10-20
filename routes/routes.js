@@ -18,7 +18,7 @@ module.exports = app => {
             axios.get("https://www.sbnation.com").then(function (response) {
                 var $ = cheerio.load(response.data);
 
-                $("articlr").each(function(i, element) {
+                $("article").each(function(i, element) {
                     var result = {};
 
                     result.title = $(this)
@@ -30,7 +30,7 @@ module.exports = app => {
                         .children("a")
                         .attr("href");
                     result.img = $(this)
-                       .children("img").attr("");
+                       .children("img").attr("src");
                         db.Article.create(result)
                             .then(function (dbArticle) {
                                 res.json(dbArticle)
