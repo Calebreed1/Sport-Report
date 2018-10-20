@@ -18,7 +18,7 @@ module.exports = app => {
             axios.get("https://www.sbnation.com").then(function (response) {
                 var $ = cheerio.load(response.data);
 
-                $("article").each(function(i, element) {
+                $("div").each(function(i, element) {
                     var result = {};
 
                     result.title = $(this)
