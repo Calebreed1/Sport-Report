@@ -14,10 +14,10 @@ module.exports = app => {
     });
 
 
-    app.get("/scrape", function (req, res) {
+    app.get("/scrape", (req, res) => {
         db.Article.find({}).then(articles => {
             let alreadyScraped = articles.map(article => article.link);
-            axios.get("https://www.sbnation.com").then(function (response) {
+            axios.get("https://www.sbnation.com").then(response => {
                 var $ = cheerio.load(response.data);
 
                 $("div").each(function (i, element) {
@@ -32,14 +32,12 @@ module.exports = app => {
                         .children("a")
                         .attr("href");
                     result.img = $(this)
-                        .children("img").attr("src");
+                        .children("picture").attr("src");
                     if (!alreadyScraped.includes(result.link)) {
-                        db.Article.create(result)
-                            .then(function (dbArticle) {
-                                res.json(dbArticle)
-                            }).catch(function (err) {
-                                return res.json(err);
-                            });
+                        db.Article.create(result).then(dbArticle => {
+                            console.log(dbArticle);
+                        }).catch(err => console.log(err)); 
+                            
                         };
                     });
                 res.redirect("/");
